@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sc_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sc_init",
+  "parent":{
+    "name":"Notes",
+    "path":"folders/Notes.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

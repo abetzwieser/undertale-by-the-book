@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sc_collision",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sc_collision",
+  "parent":{
+    "name":"Playables",
+    "path":"folders/Objects/Characters/Playables.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

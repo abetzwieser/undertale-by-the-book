@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sc_stats",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sc_stats",
+  "parent":{
+    "name":"Playables",
+    "path":"folders/Objects/Characters/Playables.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

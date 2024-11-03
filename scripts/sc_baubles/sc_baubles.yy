@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sc_baubles",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sc_baubles",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/Objects/Inventory.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
