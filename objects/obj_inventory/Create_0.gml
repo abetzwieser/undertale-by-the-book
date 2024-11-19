@@ -6,8 +6,8 @@ space_bw_lines = 15;
 main_window_width = 180;
 main_window_height = 180;
 
-side_window_width = 68;
-side_window_height = 110;
+side_window_width = 78;
+side_window_height = 0.55 * main_window_height;
 
 mini_window_width = side_window_width;
 mini_window_height = main_window_height - side_window_height - border
@@ -58,6 +58,10 @@ actions_text_offset = 24
 // notebook information
 notebook_pages = [""]
 
+// player information overview
+player_info_names = ["LV", "HP", "G"]
+player_info_values = ["1", "10\/10", "0"]
+
 // stats information
 
 // cursor information
@@ -92,7 +96,7 @@ function init(consumables, key_items, notebook){
 #macro main_window_text_y pos_y + text_offset_y
 
 #macro actions_text_y max_items_text_y + actions_text_offset
-#macro space_bw_actions main_window_width / array_length(self.actions)
+#macro space_bw_actions (main_window_width - border*2) / array_length(self.actions)
 
 #macro notebook_text_x pos_x + border
 
@@ -102,11 +106,15 @@ function init(consumables, key_items, notebook){
 
 #macro tab_names_x side_window_x + tab_names_offset_x
 #macro tab_names_y side_window_y + tab_names_offset_y
-#macro space_bw_tab_names (side_window_height) / (array_length(self.tab_names))
+#macro space_bw_tab_names (side_window_height - border * 2) / (array_length(self.tab_names))
 
 // mini window
 #macro mini_window_y pos_y
 #macro mini_window_x pos_x - mini_window_width - border
+
+#macro mini_window_text_x mini_window_x + text_offset_x
+#macro mini_window_text_y mini_window_y + text_offset_y
+
 #endregion
 
 #region functions: window/cursor display
@@ -244,15 +252,6 @@ function perform_action(cursor_pos, index) {
 	}
 }
 
-function display_tab_names(pos_x, pos_y) {
-	var tab_y = tab_names_y
-	for (var i = 0; i < array_length(self.tab_names); i++) {
-			draw_text(tab_names_x, tab_y, tab_names[i]);
-			tab_y += (side_window_height) / (array_length(self.tab_names));
-	}
-}
-
-
 function display_main_window(pos_x, pos_y){
 	draw_sprite_ext(spr_inventory, spr_frame, 
 		pos_x, 
@@ -262,6 +261,13 @@ function display_main_window(pos_x, pos_y){
 		0, c_white, 1)
 }
 
+function display_tab_names(pos_x, pos_y) {
+	var tab_y = tab_names_y
+	for (var i = 0; i < array_length(self.tab_names); i++) {
+			draw_text(tab_names_x, tab_y, tab_names[i]);
+			tab_y += space_bw_tab_names
+	}
+}
 
 function display_side_window(pos_x, pos_y){
 	draw_sprite_ext(spr_inventory, spr_frame,
@@ -274,6 +280,19 @@ function display_side_window(pos_x, pos_y){
 	display_tab_names(pos_x, pos_y)
 }
 
+function display_player_info(pos_x, pos_y) {
+	var player_info_y = mini_window_text_y
+	var text_scale = 0.8
+	var text_angle = 0
+	
+	draw_text(mini_window_text_x, player_info_y, global.player_name);
+	player_info_y += (mini_window_height) / (array_length(self.player_info_names) + 1);
+	
+	for (var i = 0; i < array_length(player_info_names); i++) {
+		draw_text_transformed(mini_window_text_x, player_info_y, player_info_names[i] + " " + player_info_values[i], text_scale, text_scale, text_angle);
+		player_info_y += (mini_window_height - border * 2) / (array_length(self.player_info_names) + 1);
+	}
+}
 
 function display_mini_window(pos_x, pos_y){
 	draw_sprite_ext(spr_inventory, spr_frame,
@@ -282,6 +301,8 @@ function display_mini_window(pos_x, pos_y){
 		mini_window_width/spr_width,
 		mini_window_height/spr_height,
 		0, c_white, 1)
+		
+	display_player_info(pos_x, pos_y);
 }
 
 function display_windows(pos_x, pos_y) {

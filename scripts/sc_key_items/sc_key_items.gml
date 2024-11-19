@@ -11,7 +11,7 @@ function Key_Item() : Item() constructor {
 	function display_hold_text() {
 		with (new Textbox()) {
 			for (i = 0; i < array_length(other.hold_text); i++) {
-				store_text(hold_text)
+				store_text(other.hold_text[i])
 			}
 			make_textbox()
 		}
