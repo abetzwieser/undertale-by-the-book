@@ -10,14 +10,19 @@ function Notebook() constructor {
 function Inventory() constructor{
 	// for testing
 	test_consumables = []
-	array_push(test_consumables, new Bauble())
-	array_push(test_consumables, new Bauble())
-	array_push(test_consumables, new Bauble())
+	array_push(test_consumables, new Magnolia_Tea())
+	array_push(test_consumables, new Twice_Dried_Fruits())
+	array_push(test_consumables, new Chocolate_Crickets())
 	array_push(test_consumables, new Honeydew_Tea())
+	array_push(test_consumables, new Salted_Snails())
+	array_push(test_consumables, new Rose_Cake())
+	array_push(test_consumables, new Aquarium_Pebbles())
+	array_push(test_consumables, new Hot_Sauce())
 	test_key_items = []
 	array_push(test_key_items, new Torn_Notebook())
 	array_push(test_key_items, new Matchbook())
-	array_push(test_key_items, new Honeydew_Tea())
+	array_push(test_key_items, new Rope())
+	array_push(test_key_items, new Research_Folder())
 	array_push(test_key_items, new Spray_Paint())
 	array_push(test_key_items, new Rusty_Key())
 	array_push(test_key_items, new Hagstone())
