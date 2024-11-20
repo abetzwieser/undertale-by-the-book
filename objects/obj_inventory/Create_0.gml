@@ -60,15 +60,13 @@ notebook_pages = [""]
 
 // player information overview
 player_info_names = ["LV", "HP", "G"]
-player_info_values = [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), "0"]
+#macro player_info_values [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), "0"]
 
 // stats information
 player_stats_names = ["LV", "HP", 
 	"AT", "EXP:", "DF", "NEXT:", 
 	"WEAPON:", "ARMOR:", "GOLD:"]
-player_stats_values = [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp),
-	string(global.player_stats.base_atk), "0", string(global.player_stats.base_def), "0",
-	"NA", "NA", "0"]
+#macro player_stats_values [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), string(global.player_stats.base_atk), "0", string(global.player_stats.base_def), "0", "NA", "NA", "0"]
 
 // cursor information
 cursor_offset_x = 6
