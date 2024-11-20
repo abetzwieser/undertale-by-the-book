@@ -1,5 +1,5 @@
 function Stats() constructor{
-	static party_count = 1;
+	static party_count = 2;
 	static party = [global.player_name];
 	
 	static level = 1;
@@ -17,6 +17,7 @@ function Stats() constructor{
 	static bonus_atk = 0;
 	
 	static xp = 0;
+	static needed_xp =  100
 	static inv = 0;
 	static spd = 0;
 	
@@ -74,9 +75,8 @@ function Stats() constructor{
 		return self.inv*5;
 	}
 	
-	function scale_xp(level){
-		xp = power(level, 2);
-		return xp
+	function scale_needed_xp(level){
+		self.needed_xp = 100 + power(level, 2);
 	}
 	
 	///stats level up functions aka setters
@@ -134,7 +134,8 @@ function Stats() constructor{
 		update_base_atk(level);
 		update_base_def(level);
 		update_base_hp(level);
-		self.hp = self.base_hp
+		self.hp = self.base_hp;
+		scale_needed_xp(level);
 	}
 }
 

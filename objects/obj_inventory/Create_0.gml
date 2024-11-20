@@ -60,13 +60,13 @@ notebook_pages = [""]
 
 // player information overview
 player_info_names = ["LV", "HP", "G"]
-#macro player_info_values [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), "0"]
+#macro player_info_values [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), string(global.player_stats.xp)]
 
 // stats information
 player_stats_names = ["LV", "HP", 
 	"AT", "EXP:", "DF", "NEXT:", 
 	"WEAPON:", "ARMOR:", "GOLD:"]
-#macro player_stats_values [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), string(global.player_stats.base_atk), "0", string(global.player_stats.base_def), "0", "NA", "NA", "0"]
+#macro player_stats_values [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), string(global.player_stats.base_atk), string(global.player_stats.xp), string(global.player_stats.base_def), string(global.player_stats.needed_xp), "NA", "NA", "0"]
 
 // displayed only if > 1 party member
 player_party_stats_names = ["MAG", "POW"]
