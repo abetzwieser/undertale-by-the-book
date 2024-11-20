@@ -5,11 +5,12 @@ global.fun = round(random_range(1, 99))
 global.dialogue_in_progress = false
 global.inventory_displayed = false
 global.battle_in_progress = false;
+global.player_name = "Paige"
 global.inventory = new Inventory()
 global.player_stats = init_stats()
 torn_notebook = new Torn_Notebook()
 global.active_item = torn_notebook
-global.player_name = "Paige"
+
 
 // key press defines
 /// Z, enter, space or left mouse

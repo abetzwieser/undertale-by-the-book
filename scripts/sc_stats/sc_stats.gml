@@ -1,5 +1,6 @@
 function Stats() constructor{
-	static party_count = 0;
+	static party_count = 1;
+	static party = [global.player_name];
 	
 	static level = 1;
 	static base_atk = 2;
@@ -18,6 +19,18 @@ function Stats() constructor{
 	static xp = 0;
 	static inv = 0;
 	static spd = 0;
+	
+	function add_party_member(name){
+		party_count++;
+		array_push(party, name);
+	}
+	
+	function remove_party_member(name){
+		party_count--;
+		for (i = 0; i < array_length(party); i++) {
+			if (name == party[i]) { array_delete(party, i, 1); }
+		}
+	}
 	
 	// hp, hp + bonus fx, other
 	function set_hp(num){

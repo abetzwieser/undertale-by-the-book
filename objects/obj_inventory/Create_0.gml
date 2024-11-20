@@ -68,6 +68,10 @@ player_stats_names = ["LV", "HP",
 	"WEAPON:", "ARMOR:", "GOLD:"]
 #macro player_stats_values [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), string(global.player_stats.base_atk), "0", string(global.player_stats.base_def), "0", "NA", "NA", "0"]
 
+// displayed only if > 1 party member
+player_party_stats_names = ["MAG", "POW"]
+#macro player_party_stats_values [string(global.player_stats.base_mag), string(global.player_stats.base_pow)]
+
 // cursor information
 cursor_offset_x = 6
 cursor_offset_y = 2
@@ -371,16 +375,17 @@ function display_stats(pos_x, pos_y){
 	var shift_x = main_window_width / 2.4
 	
 	draw_text(items_text_x, pos_text_y, global.player_name);
-	pos_text_y += space_bw_lines * 2;
+	pos_text_y += space_bw_lines;
 	
-	
+	// display hp, lv
 	for (var i = 0; i < 2; i++){
 		draw_text_ext(items_text_x, pos_text_y, player_stats_names[i] + " " + player_stats_values[i], space_bw_lines, main_window_text_width)
 		pos_text_y += space_bw_lines
 	}
 	
-	pos_text_y += space_bw_lines * 2;
+	pos_text_y += space_bw_lines;
 	
+	// display atk, exp, df, next 
 	for (var i = 2; i < 6; i++) {
 		if (i % 2 == 1) {
 			draw_text_ext(items_text_x + shift_x, pos_text_y, player_stats_names[i] + " " + player_stats_values[i], space_bw_lines, main_window_text_width)
@@ -391,8 +396,25 @@ function display_stats(pos_x, pos_y){
 		}
 	}
 	
-	pos_text_y += space_bw_lines * 2;
-	draw_text_ext(items_text_x, pos_text_y, player_stats_names[array_length(player_stats_names) - 1] + " " + player_stats_values[array_length(player_stats_names) - 1], space_bw_lines, main_window_text_width)
+	// (& mag & pow, if available)
+	if (global.player_stats.party_count > 1) {
+		for (var i = 0; i < array_length(player_party_stats_names); i++) {
+			if (i % 2 == 1) {
+				draw_text_ext(items_text_x + shift_x, pos_text_y, player_party_stats_names[i] + " " + player_party_stats_values[i], space_bw_lines, main_window_text_width)
+				pos_text_y += space_bw_lines
+			}
+			else {
+				draw_text_ext(items_text_x, pos_text_y, player_party_stats_names[i] + " " + player_party_stats_values[i], space_bw_lines, main_window_text_width)
+			}
+		}
+	}
+	
+	// display weapon, armor, gold
+	pos_text_y += space_bw_lines;
+	for (var i = 6; i < array_length(player_stats_names); i++) {
+		draw_text_ext(items_text_x, pos_text_y, player_stats_names[i] + " " + player_stats_values[i], space_bw_lines, main_window_text_width)
+		pos_text_y += space_bw_lines
+	}
 	
 }
 
