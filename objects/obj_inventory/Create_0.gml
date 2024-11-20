@@ -248,8 +248,8 @@ function perform_action(cursor_pos, index) {
 					// ask kody for items & item descriptions pls
 					// random - progressive mean, then random
 					// random fun 1 - 99
-					store_text("[You're trying to drop a key item. Are you stupid?]");
-					store_text("[... You're not dropping that.]");
+					drop_text = ["[You're trying to drop a key item. Are you stupid?]", "[... You're not dropping that.]"];
+					store_text(drop_text[round(random_range(0, 1))]);
 					make_textbox();
 				}
 			}

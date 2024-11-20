@@ -1,7 +1,7 @@
 gml_pragma("global", "sc_init()")
 
 global.dth = 0
-global.fun = 0
+global.fun = round(random_range(1, 99))
 global.dialogue_in_progress = false
 global.inventory_displayed = false
 global.battle_in_progress = false;
