@@ -188,7 +188,6 @@ function display_cursor(pos_x, pos_y){
 					actions_cursor_pos -= 1
 				}
 				else if (select) { // selecting action
-					show_debug_message("Action selected!")
 					if (!global.dialogue_in_progress) { perform_action(actions_cursor_pos, main_window_cursor_pos) }
 				}
 				draw_sprite(spr_cursor, cursor_frame, actions_cursor_x, actions_cursor_y)
@@ -234,24 +233,26 @@ function perform_action(cursor_pos, index) {
 	var action = actions[cursor_pos]
 	switch (action) {
 		case "USE":
-			if index < array_length(items) { items[index].use() }
+			if index < array_length(items) { 
+				if(items[index].use()) { array_delete(items, index, 1) }
+			}
 			break
 		case "HOLD":
-			if index < array_length(items) { items[index].hold() }
+			if index < array_length(items) { items[index].hold(); }
 			break
 		case "INFO":
-			if index < array_length(items) { items[index].info() }
+			if index < array_length(items) { items[index].info(); }
 			break
 		case "DROP":
-			if cur_tab == INVENTORY_TABS.CONSUMABLES { array_delete(items, index, 1) }
+			if cur_tab == INVENTORY_TABS.CONSUMABLES { array_delete(items, index, 1); }
 			else {
 				with (new Textbox()) {
 					// ask kody for items & item descriptions pls
 					// random - progressive mean, then random
 					// random fun 1 - 99
-					store_text("[You're trying to drop a key item. Are you stupid?]")
-					store_text("[... You're not dropping that.]")
-					make_textbox()
+					store_text("[You're trying to drop a key item. Are you stupid?]");
+					store_text("[... You're not dropping that.]");
+					make_textbox();
 				}
 			}
 			break

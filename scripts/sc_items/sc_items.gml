@@ -18,6 +18,7 @@ function Item() constructor {
 	static uses = 0;
 	
 	function use() {
+		return true;
 	}
 	
 	function info() {
@@ -38,6 +39,10 @@ function Item() constructor {
 	function heal() {
 		if (global.player_stats.set_hp(hp)) {
 			display_use_text(uses)
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 }
@@ -54,8 +59,13 @@ function Honeydew_Tea() : Item() constructor {
 	static uses = 0
 	
 	function use() {
-		heal();
-		uses++;
+		if (heal()) {
+			uses++;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -69,8 +79,13 @@ function Magnolia_Tea() : Item() constructor {
 	static uses = 0
 	
 	function use() {
-		heal();
-		uses++;
+		if (heal()) {
+			uses++;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -84,8 +99,13 @@ function Twice_Dried_Fruits() : Item() constructor {
 	static uses = 0
 	
 	function use() {
-		heal();
-		uses++;
+		if (heal()) {
+			uses++;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -102,8 +122,13 @@ function Chocolate_Crickets() : Item() constructor {
 	static uses = 0
 	
 	function use() {
-		heal()
-		uses++;
+		if (heal()) {
+			uses++;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -119,8 +144,13 @@ function Salted_Snails() : Item() constructor {
 	function use() {
 		// change depending on whether in battle or not
 		if (!global.battle_in_progress) {
-			heal();
-			uses++;
+			if (heal()) {
+				uses++;
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 }
@@ -135,8 +165,13 @@ function Rose_Cake() : Item() constructor {
 	static uses = 0
 	
 	function use() {
-		heal();
-		uses++;
+		if (heal()) {
+			uses++;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
@@ -153,6 +188,7 @@ function Aquarium_Pebbles() : Item() constructor {
 	function use() {
 		display_use_text(uses)
 		uses++;
+		return true;
 	}
 }
 
@@ -169,8 +205,13 @@ function Hot_Sauce() : Item() constructor {
 	static uses = 0
 	
 	function use() {
-		heal();
-		uses++;
+		if (heal()) {
+			uses++;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
