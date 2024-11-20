@@ -189,7 +189,7 @@ function display_cursor(pos_x, pos_y){
 				}
 				else if (select) { // selecting action
 					show_debug_message("Action selected!")
-					perform_action(actions_cursor_pos, main_window_cursor_pos)
+					if (!global.dialogue_in_progress) { perform_action(actions_cursor_pos, main_window_cursor_pos) }
 				}
 				draw_sprite(spr_cursor, cursor_frame, actions_cursor_x, actions_cursor_y)
 			} // end ACTIONS

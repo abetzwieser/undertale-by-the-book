@@ -9,7 +9,7 @@ global.inventory = new Inventory()
 global.player_stats = init_stats()
 torn_notebook = new Torn_Notebook()
 global.active_item = torn_notebook
-global.player_name = "Boo!"
+global.player_name = "Paige"
 
 // key press defines
 /// Z, enter, space or left mouse
