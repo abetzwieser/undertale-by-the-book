@@ -4,6 +4,7 @@ global.dth = 0
 global.fun = 0
 global.dialogue_in_progress = false
 global.inventory_displayed = false
+global.battle_in_progress = false;
 global.inventory = new Inventory()
 global.player_stats = init_stats()
 torn_notebook = new Torn_Notebook()

@@ -60,7 +60,7 @@ notebook_pages = [""]
 
 // player information overview
 player_info_names = ["LV", "HP", "G"]
-player_info_values = ["1", "10\/10", "0"]
+player_info_values = [string(global.player_stats.level), string(global.player_stats.hp) + "\/" + string(global.player_stats.base_hp), "0"]
 
 // stats information
 

@@ -1,8 +1,15 @@
 function Stats() constructor{
+	static party_count = 0;
+	
 	static level = 1;
 	static base_atk = 2;
 	static base_def = 0;
 	static base_hp = 20;
+	
+	// require additional party members
+	static base_mag = 0;
+	static base_pow = 0;
+	
 	static hp = 20;
 	
 	static bonus_def = 0;
@@ -12,9 +19,30 @@ function Stats() constructor{
 	static inv = 0;
 	static spd = 0;
 	
-	function restore_hp(num){
-		self.hp += num
-		if self.hp > self.base_hp { self.hp = self.base_hp } 
+	// hp, hp + bonus fx, other
+	function set_hp(num){
+		changed_hp = false;
+		if (self.hp + num <= 0) {
+			with (new Textbox()) {
+				store_text("You don't have enough HP to do that.");
+				make_textbox();
+			}
+		}
+		else if (self.hp == self.base_hp && num > 0) {
+			with (new Textbox()) {
+				store_text("Your hp is already full.");
+				make_textbox();
+			}
+		}
+		else if (self.hp + num > self.base_hp) {
+			self.hp = self.base_hp
+			changed_hp = true;
+		}
+		else { 
+			self.hp += num 
+			changed_hp = true;
+		}
+		return changed_hp
 	}
 	
 	function get_atk_pts(){

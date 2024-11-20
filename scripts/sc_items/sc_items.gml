@@ -10,28 +10,34 @@
 //a = undefined;
 
 function Item() constructor {
-	name = ""
-	description = [""]
-	use_text = [""]
+	name = "";
+	description = [""];
+	use_text = [[""]];
+	
+	hp = 0;
+	static uses = 0;
 	
 	function use() {
 	}
 	
 	function info() {
 		with (new Textbox()){
-			for (i = 0; i < array_length(other.description); i++) {
-				store_text(other.description[i])
-			}
+			for (i = 0; i < array_length(other.description); i++) { store_text(other.description[i]) }
 			make_textbox()
 		}
 	}
 	
-	function display_use_text() {
+	function display_use_text(uses) {
 		with (new Textbox()){
-			for (i = 0; i < array_length(other.use_text); i++) {
-				store_text(other.use_text[i])
-			}
+			if (uses >= array_length(other.use_text)) {uses = array_length(other.use_text) - 1}
+			for (i = 0; i < array_length(other.use_text[uses]); i++) { store_text(other.use_text[uses][i]) }
 			make_textbox()
+		}
+	}
+	
+	function heal() {
+		if (global.player_stats.set_hp(hp)) {
+			display_use_text(uses)
 		}
 	}
 }
@@ -39,67 +45,47 @@ function Item() constructor {
 function Honeydew_Tea() : Item() constructor {
 	name = "\"Honeydew\" Tea"
 	description = ["\"Bubble\" tea made of \"honeydew\" melons. Heals 10 hp."]
-	use_text = [""]
+	use_text = [["You take a sip of Honeydew Tea. Fun Fact: Melons are related to cucumber plants!"],
+		["You take a sip of Honeydew Tea. Tastes like cucumber?"],
+		["You take a sip of \"Honeydew Tea.\" Tastes like betrayal."],
+		["You take a sip of \"Honeydew Tea.\" The identity fraud leaves a bad taste in your mouth."]]
 	
+	hp = 10;
 	static uses = 0
 	
 	function use() {
-		uses += 1
-		if uses == 1 {
-			use_text[0] = "You take a sip of Honeydew Tea. Fun Fact: Melons are related to cucumber plants!"
-		}
-		else if uses == 2 {
-			use_text[0] = "You take a sip of Honeydew Tea. Tastes like cucumber?"
-		}
-		else if uses == 3 {
-			use_text[0] = "You take a sip of \"Honeydew Tea.\" Tastes like betrayal. "
-		}
-		else {
-			use_text[0] = "You take a sip of \"Honeydew Tea.\" The identity fraud leaves a bad taste in your mouth."
-		}
-		
-		display_use_text()
-		// stats.restore_hp(10)
+		heal();
+		uses++;
 	}
 }
 
 function Magnolia_Tea() : Item() constructor {
 	name = "Magnolia Tea"
 	description = ["A sweet tea made of magnolia flowers. You're tempted to fish out the petals with your tongue. Heals 12 HP."]
-	use_text = [""]
+	use_text = [["You take a sip of Magnolia Tea. Fun Fact: Magnolia flowers are pollinated by beetles instead of bees!"],
+		["You take a sip of Magnolia Tea. As your beetle brethren intended."]]
 	
+	hp = 12;
 	static uses = 0
 	
 	function use() {
-		uses += 1
-		if uses == 1 {
-			use_text[0] = "You take a sip of Magnolia Tea. Fun Fact: Magnolia flowers are pollinated by beetles instead of bees!"
-		}
-		else {
-			use_text[0] = "You take a sip of Magnolia Tea. As your beetle brethren intended."
-		}
-		
-		display_use_text()
+		heal();
+		uses++;
 	}
 }
 
 function Twice_Dried_Fruits() : Item() constructor {
 	name = "Twice Dried Fruits"
 	description = ["Someone decided to dry their dried fruits. NOT a good source of hydration. Heals 15 HP."]
-	use_text = [""]
+	use_text = [["You scarf down a handful of Twice Dried Fruits. Fun Fact: Cranberries bounce when ripe!"],
+		["You scarf down a handful of Twice Dried Fruits. You\'ve heard of twice baked cookies, but this is a little absurd."]]
 	
+	hp = 15;
 	static uses = 0
 	
 	function use() {
-		uses +=1
-		if uses == 1 {
-			use_text[0] = "You scarf down a handful of Twice Dried Fruits. Fun Fact: Cranberries bounce when ripe!"
-		}
-		else {
-			use_text[0] = "You scarf down a handful of Twice Dried Fruits. You\'ve heard of twice baked cookies, but this is a little absurd."
-		}
-		
-		display_use_text()
+		heal();
+		uses++;
 	}
 }
 
@@ -107,121 +93,84 @@ function Twice_Dried_Fruits() : Item() constructor {
 function Chocolate_Crickets() : Item() constructor {
 	name = "Chocolate Crickets"
 	description = ["Disgusting bugs disguised in an alluring chocolate coat. Heals 18 HP."]
-	use_text = [""]
+	use_text = [["You force down the Chocolate Crickets. Fun Fact: Crickets chirp by rubbing their wings together!"],
+		["You force down the Chocolate Crickets. Eating the bugs is just as gross as the first time."],
+		["You force down the Chocolate Crickets. The taste is beginning to grow on you..."],
+		["You force down the Chocolate Crickets. You’re ashamed to admit you like eating bugs."]]
 	
+	hp = 18;
 	static uses = 0
 	
 	function use() {
-		uses += 1
-		if uses == 1 {
-			use_text[0] = "You force down the Chocolate Crickets. Fun Fact: Crickets chirp by rubbing their wings together!"
-		}
-		else if uses == 2 {
-			use_text[0] = "You force down the Chocolate Crickets. Eating the bugs is just as gross as the first time."
-		}
-		else if uses == 3 {
-			use_text[0] = "You force down the Chocolate Crickets. The taste is beginning to grow on you..."
-		}
-		else {
-			use_text[0] = "You force down the Chocolate Crickets. You’re ashamed to admit you like eating bugs."
-		}
-		
-		display_use_text()
+		heal()
+		uses++;
 	}
 }
 
 function Salted_Snails() : Item() constructor {
 	name = "Salted Snails"
 	description = ["Don’t eat the shells. Heals 10, gives extra INV for 2 rounds."]
-	use_text = [""]
+	use_text = [["You slurp out the Salted Snails from their shells. Fun Fact: The study of snails is called malacology!"],
+		["You slurp out the Salted Snails from their shells. And then drop the empty shells on the floor like a heathen. At least they’re biodegradable..."]]
 	
+	hp = 10;
 	static uses = 0
 	
-	function use () {
-		uses += 1
-		if uses == 1 {
-			use_text[0] = "You slurp out the Salted Snails from their shells. Fun Fact: The study of snails is called malacology!"
+	function use() {
+		// change depending on whether in battle or not
+		if (!global.battle_in_progress) {
+			heal();
+			uses++;
 		}
-		else {
-			use_text[0] = "You slurp out the Salted Snails from their shells. And then drop the empty shells on the floor like a heathen. At least they’re biodegradable..."
-		}
-		
-		display_use_text()
 	}
 }
 
 function Rose_Cake() : Item() constructor {
 	name = "Rose Cake"
 	description = ["A chocolate cake with candied rose petals in the frosting. Looks like your birthday came early this year! Heals ALL HP."]
-	use_text = [""]
+	use_text = [["You savor the Rose Cake. Fun Fact: Roses have prickles, not thorns! You don't remember what makes those different."],
+		["You savor the Rose Cake. It's sweet in a way that you can’t help but smile about."]]
 	
+	hp = 99
 	static uses = 0
 	
 	function use() {
-		uses += 1
-		if uses == 1 {
-			use_text[0] = "You savor the Rose Cake. Fun Fact: Roses have prickles, not thorns! You don't remember what makes those different. "
-		}
-		else {
-			use_text[0] = "You savor the Rose Cake. It's sweet in a way that you can’t help but smile about."
-			// if killed Shawnter
-			// use_text = "You savor the Rose Cake. It's bittersweet..."
-		}
-		
-		display_use_text()
+		heal();
+		uses++;
 	}
 }
 
 function Aquarium_Pebbles() : Item() constructor {
 	name = "Aquarium Pebbles"
 	description = ["Little glass rocks that go at the bottom of a fish tank. They look a lot like candy, but aren't safe to eat."]
-	use_text = [""]
+	use_text = [["You crunch on the Aquarium Pebbles. Fun Fact: Glass can be formed by lightning striking the sand!"],
+		["You crunch on the Aquarium Pebbles. Forbidden snack."],
+		["Crunch. Snack."],
+		["Crumch."]]
 	
 	static uses = 0
 	
 	function use() {
-		uses += 1
-		if uses == 1 {
-			use_text[0] = "You crunch on the Aquarium Pebbles. Fun Fact: Glass can be formed by lightning striking the sand!"
-		}
-		else if uses == 2 {
-			use_text[0] = "You crunch on the Aquarium Pebbles. Forbidden snack."
-		}
-		else if uses == 3 {
-			use_text[0] = "Crunch. Snack."
-		}
-		else {
-			use_text[0] = "Crumch."
-		}
-		
-		display_use_text()
+		display_use_text(uses)
+		uses++;
 	}
 }
 
 function Hot_Sauce() : Item() constructor {
 	name = "Hot Sauce"
 	description = ["It's not spicy, but the liquid inside is still boiling. Reduces HP by 6, but heals 3x as much over 3 rounds."]
-	use_text = [""]
+	use_text = [["You take a swig of the Hot Sauce before waiting for it to cool down.",
+					"Fun Fact: Capsaicin has been used to make things spicy for thousands of years!"],
+				["You take a swig of the Hot Sauce before waiting for it to cool down. Why did you do that AGAIN???"],
+				["You take a swig of the Hot Sauce before waiting for it to cool down. This is getting out of hand."],
+				["You take a swig of the Hot Sauce before waiting for it to cool down. One must imagine Sisyphus happy."]]
 	
+	hp = -6
 	static uses = 0
 	
 	function use() {
-		uses +=1
-		if uses == 1 {
-			use_text = ["You take a swig of the Hot Sauce before waiting for it to cool down.",
-				"Fun Fact: Capsaicin has been used to make things spicy for thousands of years!"]
-		}
-		else if uses == 2 {
-			use_text[0] = "You take a swig of the Hot Sauce before waiting for it to cool down. Why did you do that AGAIN???"
-		}
-		else if uses == 3 {
-			use_text[0] = "You take a swig of the Hot Sauce before waiting for it to cool down. This is getting out of hand."
-		}
-		else {
-			use_text[0] = "You take a swig of the Hot Sauce before waiting for it to cool down. One must imagine Sisyphus happy."
-		}
-		
-		display_use_text()
+		heal();
+		uses++;
 	}
 }
 
