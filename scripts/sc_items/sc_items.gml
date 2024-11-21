@@ -9,13 +9,21 @@
 //delete a;
 //a = undefined;
 
+function init_use_count(ref) {
+	global.use_counts.ref = 0;
+}
+
+function incr_use_count(ref) {
+	global.use_counts.ref++;
+}
+
 function Item() constructor {
 	name = "";
 	description = [""];
 	use_text = [[""]];
 	
 	hp = 0;
-	static uses = 0;
+	init_use_count(name);
 	
 	function use() {
 		return true;
@@ -60,7 +68,7 @@ function Honeydew_Tea() : Item() constructor {
 	
 	function use() {
 		if (heal()) {
-			uses++;
+			incr_use_count(name);
 			return true;
 		}
 		else {
@@ -80,7 +88,7 @@ function Magnolia_Tea() : Item() constructor {
 	
 	function use() {
 		if (heal()) {
-			uses++;
+			incr_use_count(name);
 			return true;
 		}
 		else {
@@ -100,7 +108,7 @@ function Twice_Dried_Fruits() : Item() constructor {
 	
 	function use() {
 		if (heal()) {
-			uses++;
+			incr_use_count(name);
 			return true;
 		}
 		else {
@@ -123,7 +131,7 @@ function Chocolate_Crickets() : Item() constructor {
 	
 	function use() {
 		if (heal()) {
-			uses++;
+			incr_use_count(name);
 			return true;
 		}
 		else {
@@ -145,7 +153,7 @@ function Salted_Snails() : Item() constructor {
 		// change depending on whether in battle or not
 		if (!global.battle_in_progress) {
 			if (heal()) {
-				uses++;
+				incr_use_count(name);
 				return true;
 			}
 			else {
@@ -166,7 +174,7 @@ function Rose_Cake() : Item() constructor {
 	
 	function use() {
 		if (heal()) {
-			uses++;
+			incr_use_count(name);
 			return true;
 		}
 		else {
@@ -187,7 +195,7 @@ function Aquarium_Pebbles() : Item() constructor {
 	
 	function use() {
 		display_use_text(uses)
-		uses++;
+		incr_use_count(name);
 		return true;
 	}
 }
@@ -206,7 +214,7 @@ function Hot_Sauce() : Item() constructor {
 	
 	function use() {
 		if (heal()) {
-			uses++;
+			incr_use_count(name);
 			return true;
 		}
 		else {

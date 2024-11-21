@@ -1,5 +1,6 @@
 gml_pragma("global", "sc_init()")
 
+global.use_counts = {}
 global.dth = 0
 global.fun = round(random_range(1, 99))
 global.dialogue_in_progress = false
